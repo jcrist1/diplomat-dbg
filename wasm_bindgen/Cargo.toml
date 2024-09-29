@@ -1,0 +1,12 @@
+[package]
+name = "dbg"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+diplomat = { git = "https://github.com/rust-diplomat/diplomat", rev = "3a6e50cdf921247fb87979c9a709e7f1df5b8046", version = "0.8.0" }
+diplomat-runtime = { git = "https://github.com/rust-diplomat/diplomat", rev = "3a6e50cdf921247fb87979c9a709e7f1df5b8046", version = "0.8.1" }
+tokenizers = { version = "0.20.0", default-features = false, features = ["unstable_wasm"] }
