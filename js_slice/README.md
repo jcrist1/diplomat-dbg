@@ -18,19 +18,7 @@ copy the wasm module to the `js/api/` directory
 cp target/wasm32-unknown-unknown/dbg2.wasm js/api/
 ```
 
-I'm not great with node config, so I need to figure out the ts config better as I needed to manually adjust the import in `index.js`
-
-```js
-import { SliceGetter } from "./api/SliceGetter";
-```
-
-to
-
-```js
-import { SliceGetter } from "./api/SliceGetter.mjs";
-```
-
-Running node (v19) from the `js/` path
+Optionally run `tsc`. Then running node (v19) from the `js/` path
 
 ```sh
 node index.js
@@ -39,13 +27,13 @@ node index.js
 yields
 
 ```
-file:///Users/cristina/workspace/rust/tmp/dbg2/js/api/SliceGetter.mjs:45
+file:///{PATH}/js/api/SliceGetter.mjs:45
             return new diplomatRuntime.DiplomatSlicePrimitive.getSlice(wasm, diplomatReceive.buffer, "u8", aEdges);
                    ^
 
 TypeError: diplomatRuntime.DiplomatSlicePrimitive.getSlice is not a constructor
-    at SliceGetter.getSlice (file:///Users/cristina/workspace/rust/tmp/dbg2/js/api/SliceGetter.mjs:45:20)
-    at file:///Users/cristina/workspace/rust/tmp/dbg2/js/index.js:2:25
+    at SliceGetter.getSlice (file:///{PATH}/js/api/SliceGetter.mjs:45:20)
+    at file:///{{PATH}/js/index.js:2:25
 
 Node.js v19.9.0
 ```
@@ -69,7 +57,7 @@ return new diplomatRuntime.DiplomatSlicePrimitive(
   diplomatReceive.buffer,
   "u8",
   aEdges,
-).buffer;
+).getValue();
 ```
 
 fixes this
