@@ -5,7 +5,7 @@ import * as dbg_bg from "./dbg_bg.js";
 let wasm;
 
 const imports = {
-  "./dbg_bg.js": dbg_bg,
+  // "./dbg_bg.js": dbg_bg,
   env: {
     diplomat_console_debug_js(ptr, len) {
       console.debug(readString8(wasm, ptr, len));
